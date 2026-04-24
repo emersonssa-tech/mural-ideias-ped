@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mural de Ideias — Marketing | Grupo PED</title>
+<title>Necessidades do Marketing — Grupo PED</title>
 <style>
   :root {
     --quadro: #0f172a;
@@ -393,36 +393,6 @@
     font-weight: 600;
   }
 
-  .vote-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.35rem 0.8rem;
-    border-radius: 8px;
-    border: 1px solid var(--borda);
-    background: transparent;
-    color: var(--giz-fraco);
-    font-size: 0.82rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.15s;
-    font-family: var(--font);
-  }
-
-  .vote-btn:hover {
-    border-color: var(--escola-verde);
-    color: var(--escola-verde);
-    background: var(--escola-verde-glow);
-  }
-
-  .vote-btn.voted {
-    border-color: var(--escola-verde);
-    color: var(--escola-verde);
-    background: var(--escola-verde-glow);
-  }
-
-  .vote-btn svg { width: 14px; height: 14px; }
-
   /* ═══ EMPTY STATE ═══ */
   .empty-state {
     text-align: center;
@@ -506,11 +476,11 @@
 
 <!-- ═══ HERO ═══ -->
 <header class="hero">
-  <div class="hero-badge">Desenvolvimento do Sistema</div>
-  <h1>Mural de <span>Ideias</span></h1>
-  <p>Ajude a construir o Sistema de Marketing Inteligente do Grupo PED. Sugira funcionalidades, vote nas melhores ideias.</p>
+  <div class="hero-badge">Equipe de Marketing</div>
+  <h1>O que você <span>precisa?</span></h1>
+  <p>Registre aqui o que você precisa que o sistema faça no seu dia a dia. Quanto mais detalhado, melhor a gente constrói.</p>
   <div class="hero-cta">
-    <a href="#enviar">Enviar sua ideia ↓</a>
+    <a href="#enviar">Registrar necessidade ↓</a>
   </div>
 </header>
 
@@ -518,15 +488,15 @@
 <div class="stats-bar">
   <div class="stat">
     <div class="stat-value" id="totalIdeas">0</div>
-    <div class="stat-label">Ideias enviadas</div>
+    <div class="stat-label">Registros</div>
   </div>
   <div class="stat">
-    <div class="stat-value" id="totalVotes">0</div>
-    <div class="stat-label">Votos totais</div>
+    <div class="stat-value" id="totalUrgent">0</div>
+    <div class="stat-label">Urgentes</div>
   </div>
   <div class="stat">
     <div class="stat-value" id="totalPeople">0</div>
-    <div class="stat-label">Participantes</div>
+    <div class="stat-label">Categorias</div>
   </div>
 </div>
 
@@ -535,35 +505,19 @@
 
   <!-- FORM -->
   <section class="form-section" id="enviar">
-    <h2 class="section-title">Envie sua ideia</h2>
-    <p class="section-sub">Que funcionalidade você gostaria de ver no sistema?</p>
+    <h2 class="section-title">Registrar necessidade</h2>
+    <p class="section-sub">O que você precisa que o sistema resolva pra você?</p>
 
     <div class="form-card">
       <form id="ideaForm">
         <div class="form-grid">
           <div class="form-group">
             <label for="nome">Seu nome</label>
-            <input type="text" id="nome" placeholder="Ex: Maria Silva" required>
+            <input type="text" id="nome" placeholder="Ex: Ana" required>
           </div>
 
           <div class="form-group">
-            <label for="setor">Setor / Unidade</label>
-            <select id="setor" required>
-              <option value="">Selecione...</option>
-              <option value="Direção">Direção</option>
-              <option value="Coordenação">Coordenação Pedagógica</option>
-              <option value="Comercial">Comercial / Matrículas</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Design">Design / Criação</option>
-              <option value="T.I">T.I</option>
-              <option value="Financeiro">Financeiro</option>
-              <option value="Secretaria">Secretaria</option>
-              <option value="Outro">Outro</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="categoria">Categoria</label>
+            <label for="categoria">Área do sistema</label>
             <select id="categoria" required>
               <option value="">Selecione...</option>
               <option value="CRM">CRM e Gestão de Leads</option>
@@ -572,32 +526,42 @@
               <option value="Integração">Integrações (WhatsApp, Sistema escolar...)</option>
               <option value="IA">Inteligência Artificial</option>
               <option value="Solicitações">Solicitações e Produção</option>
-              <option value="Outro">Outra sugestão</option>
+              <option value="Outro">Outra área</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="prioridade">Prioridade para você</label>
+            <label for="prioridade">Urgência</label>
             <select id="prioridade">
-              <option value="Media">Média</option>
-              <option value="Alta">Alta — preciso muito disso</option>
-              <option value="Baixa">Baixa — seria legal ter</option>
+              <option value="Alta">Urgente — preciso disso logo</option>
+              <option value="Media">Normal</option>
+              <option value="Baixa">Pode ser depois</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <select id="tipo">
+              <option value="Preciso ver">Preciso ver um dado/relatório</option>
+              <option value="Preciso fazer">Preciso fazer uma ação no sistema</option>
+              <option value="Automatizar">Quero que o sistema faça sozinho</option>
+              <option value="Problema">Algo que não funciona hoje</option>
             </select>
           </div>
 
           <div class="form-group full">
-            <label for="titulo">Título da ideia</label>
-            <input type="text" id="titulo" placeholder="Ex: Relatório de ROI por campanha de outdoor" required>
+            <label for="titulo">O que você precisa?</label>
+            <input type="text" id="titulo" placeholder="Ex: Saber quantos leads vieram do Instagram essa semana" required>
           </div>
 
           <div class="form-group full">
-            <label for="descricao">Descreva sua ideia</label>
-            <textarea id="descricao" placeholder="Explique o que você precisa, como usaria no dia a dia, e qual problema resolve..." required></textarea>
+            <label for="descricao">Explica melhor (como é hoje e como deveria ser)</label>
+            <textarea id="descricao" placeholder="Ex: Hoje eu preciso abrir 3 planilhas pra saber isso. Queria ver num painel único com filtro por período..." required></textarea>
           </div>
         </div>
 
         <div class="form-actions">
-          <button type="submit" class="btn-submit" id="submitBtn">Enviar ideia</button>
+          <button type="submit" class="btn-submit" id="submitBtn">Registrar</button>
         </div>
       </form>
     </div>
@@ -607,12 +571,12 @@
   <section>
     <div class="ideas-header">
       <div>
-        <h2 class="section-title">Ideias da comunidade</h2>
-        <p class="section-sub" style="margin-bottom:0">Veja, vote e comente nas sugestões</p>
+        <h2 class="section-title">Necessidades registradas</h2>
+        <p class="section-sub" style="margin-bottom:0">Tudo que a equipe precisa no sistema</p>
       </div>
       <select class="sort-select" id="sortSelect">
         <option value="recent">Mais recentes</option>
-        <option value="votes">Mais votadas</option>
+        <option value="urgent">Mais urgentes</option>
       </select>
     </div>
 
@@ -634,8 +598,8 @@
 </main>
 
 <footer class="footer">
-  Sistema de Inteligência de Marketing — Grupo PED<br>
-  <span style="color:var(--giz-sombra)">Suas ideias constroem o futuro da plataforma</span>
+  Sistema de Marketing Inteligente — Grupo PED<br>
+  <span style="color:var(--giz-sombra)">Cada registro vira funcionalidade real</span>
 </footer>
 
 <div class="toast" id="toast"></div>
@@ -653,7 +617,6 @@ const SCRIPT_URL = ''; // Cole aqui a URL do seu Apps Script deploy
 let ideas = [];
 let currentFilter = 'Todas';
 let currentSort = 'recent';
-let votedIds = JSON.parse(localStorage.getItem('ped_voted') || '[]');
 
 // ════════════════════════════════════════
 // STORAGE (localStorage fallback when no backend)
@@ -723,8 +686,9 @@ function render() {
     ? [...ideas]
     : ideas.filter(i => i.categoria === currentFilter);
 
-  if (currentSort === 'votes') {
-    filtered.sort((a, b) => (b.votes || 0) - (a.votes || 0));
+  if (currentSort === 'urgent') {
+    const prioOrder = { 'Alta': 0, 'Media': 1, 'Baixa': 2 };
+    filtered.sort((a, b) => (prioOrder[a.prioridade] || 1) - (prioOrder[b.prioridade] || 1));
   } else {
     filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
   }
@@ -734,12 +698,11 @@ function render() {
   if (filtered.length === 0) {
     grid.innerHTML = `
       <div class="empty-state">
-        <p>Nenhuma ideia ainda${currentFilter !== 'Todas' ? ' nesta categoria' : ''}</p>
-        <small>Seja o primeiro a enviar!</small>
+        <p>Nenhum registro ainda${currentFilter !== 'Todas' ? ' nesta categoria' : ''}</p>
+        <small>Registre o que você precisa!</small>
       </div>`;
   } else {
     grid.innerHTML = filtered.map((idea, i) => {
-      const isVoted = votedIds.includes(idea.id);
       return `
       <div class="idea-card" style="animation-delay:${i * 0.05}s">
         <div class="idea-header">
@@ -747,63 +710,30 @@ function render() {
           <span class="idea-category ${getCatClass(idea.categoria)}">${esc(idea.categoria)}</span>
         </div>
         <div class="idea-desc">${esc(idea.descricao)}</div>
+        ${idea.tipo ? `<div style="margin-top:0.5rem;font-size:0.8rem;color:var(--giz-apagado)">Tipo: ${esc(idea.tipo)}</div>` : ''}
         <div class="idea-meta">
           <div class="idea-author">
-            <strong>${esc(idea.nome)}</strong> · ${esc(idea.setor)}
-            ${idea.prioridade === 'Alta' ? ' · <span style="color:var(--alerta-amber)">Prioridade alta</span>' : ''}
+            <strong>${esc(idea.nome)}</strong>
+            ${idea.prioridade === 'Alta' ? ' · <span style="color:var(--alerta-amber)">Urgente</span>' : idea.prioridade === 'Baixa' ? ' · <span style="color:var(--giz-apagado)">Pode esperar</span>' : ''}
           </div>
-          <button class="vote-btn ${isVoted ? 'voted' : ''}" onclick="vote('${idea.id}')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 19V5M5 12l7-7 7 7"/>
-            </svg>
-            ${idea.votes || 0}
-          </button>
+          <span style="font-size:0.75rem;color:var(--giz-apagado)">${new Date(idea.date).toLocaleDateString('pt-BR')}</span>
         </div>
       </div>`;
     }).join('');
   }
 
   // Update stats
-  const uniquePeople = [...new Set(ideas.map(i => i.nome))];
-  const totalVotes = ideas.reduce((sum, i) => sum + (i.votes || 0), 0);
+  const totalUrgent = ideas.filter(i => i.prioridade === 'Alta').length;
+  const uniqueCats = [...new Set(ideas.map(i => i.categoria))];
   document.getElementById('totalIdeas').textContent = ideas.length;
-  document.getElementById('totalVotes').textContent = totalVotes;
-  document.getElementById('totalPeople').textContent = uniquePeople.length;
+  document.getElementById('totalUrgent').textContent = totalUrgent;
+  document.getElementById('totalPeople').textContent = uniqueCats.length;
 }
 
 function esc(str) {
   const d = document.createElement('div');
   d.textContent = str || '';
   return d.innerHTML;
-}
-
-// ════════════════════════════════════════
-// ACTIONS
-// ════════════════════════════════════════
-function vote(id) {
-  const idx = ideas.findIndex(i => i.id === id);
-  if (idx === -1) return;
-
-  if (votedIds.includes(id)) {
-    ideas[idx].votes = (ideas[idx].votes || 1) - 1;
-    votedIds = votedIds.filter(v => v !== id);
-  } else {
-    ideas[idx].votes = (ideas[idx].votes || 0) + 1;
-    votedIds.push(id);
-  }
-
-  localStorage.setItem('ped_voted', JSON.stringify(votedIds));
-  saveLocal();
-
-  if (SCRIPT_URL) {
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: JSON.stringify({ action: 'vote', id, votes: ideas[idx].votes })
-    }).catch(() => {});
-  }
-
-  render();
 }
 
 function showToast(msg) {
@@ -823,11 +753,12 @@ document.getElementById('ideaForm').addEventListener('submit', function(e) {
   btn.textContent = 'Enviando...';
 
   const idea = {
-    id: 'idea_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
+    id: 'req_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
     nome: document.getElementById('nome').value.trim(),
-    setor: document.getElementById('setor').value,
+    setor: 'Marketing',
     categoria: document.getElementById('categoria').value,
     prioridade: document.getElementById('prioridade').value,
+    tipo: document.getElementById('tipo').value,
     titulo: document.getElementById('titulo').value.trim(),
     descricao: document.getElementById('descricao').value.trim(),
     votes: 0,
@@ -835,10 +766,10 @@ document.getElementById('ideaForm').addEventListener('submit', function(e) {
   };
 
   saveIdea(idea).then(() => {
-    showToast('Ideia enviada com sucesso!');
+    showToast('Registrado com sucesso!');
     this.reset();
     btn.disabled = false;
-    btn.textContent = 'Enviar ideia';
+    btn.textContent = 'Registrar';
     document.querySelector('.ideas-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
