@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mural de Ideias — Sistema de Marketing Inteligente</title>
+<style>
+  :root {
+    --quadro: #0f172a;
+    --lousa: #1e293b;
+    --giz: #e2e8f0;
+    --giz-fraco: #94a3b8;
+    --giz-apagado: #64748b;
+    --giz-sombra: #475569;
+    --escola-verde: #10b981;
+    --escola-verde-glow: #10b98130;
+    --digital-roxo: #6366f1;
+    --digital-roxo-glow: #6366f120;
+    --alerta-amber: #f59e0b;
+    --rosa-acao: #ec4899;
+    --borda: #334155;
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font);
+    background: var(--quadro);
+    color: var(--giz);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    min-height: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--digital-roxo-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -15%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--escola-verde-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    border: 1px solid var(--escola-verde);
+    color: var(--escola-verde);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    background: var(--escola-verde-glow);
+    animation: fadeInDown 0.6s ease;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    animation: fadeInDown 0.6s ease 0.1s both;
+    position: relative;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--digital-roxo), var(--escola-verde));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--giz-fraco);
+    max-width: 520px;
+    line-height: 1.5;
+    animation: fadeInDown 0.6s ease 0.2s both;
+    position: relative;
+  }
+
+  .hero-cta {
+    margin-top: 2rem;
+    animation: fadeInDown 0.6s ease 0.3s both;
+    position: relative;
+  }
+
+  .hero-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--escola-verde);
+    color: var(--quadro);
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .hero-cta a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--escola-verde-glow);
+  }
+
+  /* ═══ STATS BAR ═══ */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1.2rem 1.5rem;
+    border-top: 1px solid var(--borda);
+    border-bottom: 1px solid var(--borda);
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--digital-roxo);
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--giz-apagado);
+    margin-top: 0.15rem;
+  }
+
+  /* ═══ MAIN LAYOUT ═══ */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* ═══ FORM SECTION ═══ */
+  .form-section {
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .section-sub {
+    color: var(--giz-apagado);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-card {
+    background: var(--lousa);
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 2rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group.full {
+    grid-column: 1 / -1;
+  }
+
+  .form-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--giz-fraco);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--quadro);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    color: var(--giz);
+    font-family: var(--font);
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--escola-verde);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .form-group select option {
+    background: var(--lousa);
+  }
+
+  .form-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn-submit {
+    padding: 0.8rem 2.5rem;
+    background: var(--escola-verde);
+    color: var(--quadro);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+    font-family: var(--font);
+  }
+
+  .btn-submit:hover { transform: translateY(-1px); }
+  .btn-submit:active { transform: scale(0.98); }
+  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* ═══ FILTERS ═══ */
+  .filters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .filters span {
+    font-size: 0.85rem;
+    color: var(--giz-apagado);
+    margin-right: 0.3rem;
+  }
+
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    border: 1px solid var(--borda);
+    background: transparent;
+    color: var(--giz-fraco);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--font);
+  }
+
+  .filter-btn:hover { border-color: var(--giz-sombra); color: var(--giz); }
+  .filter-btn.active {
+    background: var(--digital-roxo);
+    border-color: var(--digital-roxo);
+    color: white;
+  }
+
+  /* ═══ IDEAS GRID ═══ */
+  .ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+
+  @media (max-width: 400px) {
+    .ideas-grid { grid-template-columns: 1fr; }
+  }
+
+  .idea-card {
+    background: var(--lousa);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.15s;
+    animation: fadeInUp 0.4s ease both;
+  }
+
+  .idea-card:hover {
+    border-color: var(--giz-sombra);
+    transform: translateY(-2px);
+  }
+
+  .idea-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .idea-category {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .cat-relatorios { background: #6366f120; color: #818cf8; }
+  .cat-crm { background: #10b98120; color: #34d399; }
+  .cat-campanhas { background: #f59e0b20; color: #fbbf24; }
+  .cat-dashboard { background: #ec489920; color: #f472b6; }
+  .cat-integracao { background: #14b8a620; color: #2dd4bf; }
+  .cat-ia { background: #8b5cf620; color: #a78bfa; }
+  .cat-outro { background: #64748b20; color: #94a3b8; }
+
+  .idea-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+    flex: 1;
+  }
+
+  .idea-desc {
+    font-size: 0.88rem;
+    color: var(--giz-fraco);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .idea-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--borda);
+  }
+
+  .idea-author {
+    font-size: 0.78rem;
+    color: var(--giz-apagado);
+  }
+
+  .idea-author strong {
+    color: var(--giz-fraco);
+    font-weight: 600;
+  }
+
+  .vote-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--borda);
+    background: transparent;
+    color: var(--giz-fraco);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--font);
+  }
+
+  .vote-btn:hover {
+    border-color: var(--escola-verde);
+    color: var(--escola-verde);
+    background: var(--escola-verde-glow);
+  }
+
+  .vote-btn.voted {
+    border-color: var(--escola-verde);
+    color: var(--escola-verde);
+    background: var(--escola-verde-glow);
+  }
+
+  .vote-btn svg { width: 14px; height: 14px; }
+
+  /* ═══ EMPTY STATE ═══ */
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--giz-apagado);
+    grid-column: 1 / -1;
+  }
+
+  .empty-state p { font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .empty-state small { font-size: 0.85rem; }
+
+  /* ═══ TOAST ═══ */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    padding: 0.8rem 1.8rem;
+    background: var(--escola-verde);
+    color: var(--quadro);
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ═══ FOOTER ═══ */
+  .footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--borda);
+    color: var(--giz-apagado);
+    font-size: 0.8rem;
+  }
+
+  .footer a { color: var(--digital-roxo); text-decoration: none; }
+
+  /* ═══ ANIMATIONS ═══ */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ═══ SORT ═══ */
+  .ideas-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .sort-select {
+    background: var(--lousa);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    color: var(--giz-fraco);
+    font-size: 0.8rem;
+    font-family: var(--font);
+    outline: none;
+    cursor: pointer;
+  }
+
+  .sort-select option { background: var(--lousa); }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-badge">Colaborativo</div>
+  <h1>Mural de <span>Ideias</span></h1>
+  <p>Ajude a construir o Sistema de Marketing Inteligente do Grupo PED. Sugira funcionalidades, vote nas melhores ideias.</p>
+  <div class="hero-cta">
+    <a href="#enviar">Enviar sua ideia ↓</a>
+  </div>
+</header>
+
+<!-- ═══ STATS ═══ -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-value" id="totalIdeas">0</div>
+    <div class="stat-label">Ideias enviadas</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" id="totalVotes">0</div>
+    <div class="stat-label">Votos totais</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" id="totalPeople">0</div>
+    <div class="stat-label">Participantes</div>
+  </div>
+</div>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main">
+
+  <!-- FORM -->
+  <section class="form-section" id="enviar">
+    <h2 class="section-title">Envie sua ideia</h2>
+    <p class="section-sub">O que você gostaria de ver na plataforma de marketing?</p>
+
+    <div class="form-card">
+      <form id="ideaForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nome">Seu nome</label>
+            <input type="text" id="nome" placeholder="Ex: Maria Silva" required>
+          </div>
+
+          <div class="form-group">
+            <label for="setor">Setor / Unidade</label>
+            <select id="setor" required>
+              <option value="">Selecione...</option>
+              <option value="Direção">Direção</option>
+              <option value="Coordenação">Coordenação Pedagógica</option>
+              <option value="Comercial">Comercial / Matrículas</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Design">Design / Criação</option>
+              <option value="T.I">T.I</option>
+              <option value="Financeiro">Financeiro</option>
+              <option value="Secretaria">Secretaria</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="categoria">Categoria</label>
+            <select id="categoria" required>
+              <option value="">Selecione...</option>
+              <option value="Relatórios">Relatórios e Métricas</option>
+              <option value="CRM">CRM e Gestão de Leads</option>
+              <option value="Campanhas">Campanhas e Anúncios</option>
+              <option value="Dashboard">Dashboard e Visualizações</option>
+              <option value="Integração">Integrações (WhatsApp, Sistema escolar...)</option>
+              <option value="IA">Inteligência Artificial</option>
+              <option value="Outro">Outra sugestão</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="prioridade">Prioridade para você</label>
+            <select id="prioridade">
+              <option value="Media">Média</option>
+              <option value="Alta">Alta — preciso muito disso</option>
+              <option value="Baixa">Baixa — seria legal ter</option>
+            </select>
+          </div>
+
+          <div class="form-group full">
+            <label for="titulo">Título da ideia</label>
+            <input type="text" id="titulo" placeholder="Ex: Relatório de ROI por campanha de outdoor" required>
+          </div>
+
+          <div class="form-group full">
+            <label for="descricao">Descreva sua ideia</label>
+            <textarea id="descricao" placeholder="Explique o que você precisa, como usaria no dia a dia, e qual problema resolve..." required></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-submit" id="submitBtn">Enviar ideia</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- IDEAS -->
+  <section>
+    <div class="ideas-header">
+      <div>
+        <h2 class="section-title">Ideias da comunidade</h2>
+        <p class="section-sub" style="margin-bottom:0">Veja, vote e comente nas sugestões</p>
+      </div>
+      <select class="sort-select" id="sortSelect">
+        <option value="recent">Mais recentes</option>
+        <option value="votes">Mais votadas</option>
+      </select>
+    </div>
+
+    <div class="filters">
+      <span>Filtrar:</span>
+      <button class="filter-btn active" data-filter="Todas">Todas</button>
+      <button class="filter-btn" data-filter="Relatórios">Relatórios</button>
+      <button class="filter-btn" data-filter="CRM">CRM</button>
+      <button class="filter-btn" data-filter="Campanhas">Campanhas</button>
+      <button class="filter-btn" data-filter="Dashboard">Dashboard</button>
+      <button class="filter-btn" data-filter="Integração">Integração</button>
+      <button class="filter-btn" data-filter="IA">IA</button>
+      <button class="filter-btn" data-filter="Outro">Outro</button>
+    </div>
+
+    <div class="ideas-grid" id="ideasGrid"></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  Sistema de Inteligência de Marketing — Grupo PED<br>
+  <span style="color:var(--giz-sombra)">Suas ideias constroem o futuro da plataforma</span>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ════════════════════════════════════════
+// CONFIG: Substitua pela URL do seu Google Apps Script
+// (veja instruções no README)
+// ════════════════════════════════════════
+const SCRIPT_URL = ''; // Cole aqui a URL do seu Apps Script deploy
+
+// ════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════
+let ideas = [];
+let currentFilter = 'Todas';
+let currentSort = 'recent';
+let votedIds = JSON.parse(localStorage.getItem('ped_voted') || '[]');
+
+// ════════════════════════════════════════
+// STORAGE (localStorage fallback when no backend)
+// ════════════════════════════════════════
+function loadIdeas() {
+  if (SCRIPT_URL) {
+    fetch(SCRIPT_URL + '?action=get')
+      .then(r => r.json())
+      .then(data => { ideas = data; render(); })
+      .catch(() => { loadLocal(); });
+  } else {
+    loadLocal();
+  }
+}
+
+function loadLocal() {
+  ideas = JSON.parse(localStorage.getItem('ped_ideas') || '[]');
+  render();
+}
+
+function saveIdea(idea) {
+  if (SCRIPT_URL) {
+    return fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'add', ...idea })
+    }).then(() => {
+      ideas.unshift(idea);
+      saveLocal();
+      render();
+    }).catch(() => {
+      ideas.unshift(idea);
+      saveLocal();
+      render();
+    });
+  } else {
+    ideas.unshift(idea);
+    saveLocal();
+    render();
+    return Promise.resolve();
+  }
+}
+
+function saveLocal() {
+  localStorage.setItem('ped_ideas', JSON.stringify(ideas));
+}
+
+// ════════════════════════════════════════
+// RENDER
+// ════════════════════════════════════════
+function getCatClass(cat) {
+  const map = {
+    'Relatórios': 'cat-relatorios',
+    'CRM': 'cat-crm',
+    'Campanhas': 'cat-campanhas',
+    'Dashboard': 'cat-dashboard',
+    'Integração': 'cat-integracao',
+    'IA': 'cat-ia',
+    'Outro': 'cat-outro'
+  };
+  return map[cat] || 'cat-outro';
+}
+
+function render() {
+  let filtered = currentFilter === 'Todas'
+    ? [...ideas]
+    : ideas.filter(i => i.categoria === currentFilter);
+
+  if (currentSort === 'votes') {
+    filtered.sort((a, b) => (b.votes || 0) - (a.votes || 0));
+  } else {
+    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+  }
+
+  const grid = document.getElementById('ideasGrid');
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <p>Nenhuma ideia ainda${currentFilter !== 'Todas' ? ' nesta categoria' : ''}</p>
+        <small>Seja o primeiro a enviar!</small>
+      </div>`;
+  } else {
+    grid.innerHTML = filtered.map((idea, i) => {
+      const isVoted = votedIds.includes(idea.id);
+      return `
+      <div class="idea-card" style="animation-delay:${i * 0.05}s">
+        <div class="idea-header">
+          <div class="idea-title">${esc(idea.titulo)}</div>
+          <span class="idea-category ${getCatClass(idea.categoria)}">${esc(idea.categoria)}</span>
+        </div>
+        <div class="idea-desc">${esc(idea.descricao)}</div>
+        <div class="idea-meta">
+          <div class="idea-author">
+            <strong>${esc(idea.nome)}</strong> · ${esc(idea.setor)}
+            ${idea.prioridade === 'Alta' ? ' · <span style="color:var(--alerta-amber)">Prioridade alta</span>' : ''}
+          </div>
+          <button class="vote-btn ${isVoted ? 'voted' : ''}" onclick="vote('${idea.id}')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19V5M5 12l7-7 7 7"/>
+            </svg>
+            ${idea.votes || 0}
+          </button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // Update stats
+  const uniquePeople = [...new Set(ideas.map(i => i.nome))];
+  const totalVotes = ideas.reduce((sum, i) => sum + (i.votes || 0), 0);
+  document.getElementById('totalIdeas').textContent = ideas.length;
+  document.getElementById('totalVotes').textContent = totalVotes;
+  document.getElementById('totalPeople').textContent = uniquePeople.length;
+}
+
+function esc(str) {
+  const d = document.createElement('div');
+  d.textContent = str || '';
+  return d.innerHTML;
+}
+
+// ════════════════════════════════════════
+// ACTIONS
+// ════════════════════════════════════════
+function vote(id) {
+  const idx = ideas.findIndex(i => i.id === id);
+  if (idx === -1) return;
+
+  if (votedIds.includes(id)) {
+    ideas[idx].votes = (ideas[idx].votes || 1) - 1;
+    votedIds = votedIds.filter(v => v !== id);
+  } else {
+    ideas[idx].votes = (ideas[idx].votes || 0) + 1;
+    votedIds.push(id);
+  }
+
+  localStorage.setItem('ped_voted', JSON.stringify(votedIds));
+  saveLocal();
+
+  if (SCRIPT_URL) {
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify({ action: 'vote', id, votes: ideas[idx].votes })
+    }).catch(() => {});
+  }
+
+  render();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ════════════════════════════════════════
+// FORM
+// ════════════════════════════════════════
+document.getElementById('ideaForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  const idea = {
+    id: 'idea_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
+    nome: document.getElementById('nome').value.trim(),
+    setor: document.getElementById('setor').value,
+    categoria: document.getElementById('categoria').value,
+    prioridade: document.getElementById('prioridade').value,
+    titulo: document.getElementById('titulo').value.trim(),
+    descricao: document.getElementById('descricao').value.trim(),
+    votes: 0,
+    date: new Date().toISOString()
+  };
+
+  saveIdea(idea).then(() => {
+    showToast('Ideia enviada com sucesso!');
+    this.reset();
+    btn.disabled = false;
+    btn.textContent = 'Enviar ideia';
+    document.querySelector('.ideas-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ════════════════════════════════════════
+// FILTERS & SORT
+// ════════════════════════════════════════
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    currentFilter = this.dataset.filter;
+    render();
+  });
+});
+
+document.getElementById('sortSelect').addEventListener('change', function() {
+  currentSort = this.value;
+  render();
+});
+
+// ════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════
+loadIdeas();
+</script>
+
+</body>
+</html>
