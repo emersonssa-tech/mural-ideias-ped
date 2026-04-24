@@ -353,12 +353,12 @@
     flex-shrink: 0;
   }
 
+  .cat-crm { background: #10b98120; color: #34d399; }
   .cat-campanhas { background: #f59e0b20; color: #fbbf24; }
-  .cat-captacao { background: #10b98120; color: #34d399; }
-  .cat-redes { background: #ec489920; color: #f472b6; }
-  .cat-eventos { background: #6366f120; color: #818cf8; }
-  .cat-materiais { background: #14b8a620; color: #2dd4bf; }
-  .cat-resultados { background: #8b5cf620; color: #a78bfa; }
+  .cat-dashboard { background: #ec489920; color: #f472b6; }
+  .cat-integracao { background: #14b8a620; color: #2dd4bf; }
+  .cat-ia { background: #8b5cf620; color: #a78bfa; }
+  .cat-solicitacoes { background: #6366f120; color: #818cf8; }
   .cat-outro { background: #64748b20; color: #94a3b8; }
 
   .idea-title {
@@ -506,9 +506,9 @@
 
 <!-- ═══ HERO ═══ -->
 <header class="hero">
-  <div class="hero-badge">Marketing</div>
+  <div class="hero-badge">Desenvolvimento do Sistema</div>
   <h1>Mural de <span>Ideias</span></h1>
-  <p>Ajude a construir o módulo de Marketing do Grupo PED. Sugira melhorias para campanhas, captação de alunos e resultados.</p>
+  <p>Ajude a construir o Sistema de Marketing Inteligente do Grupo PED. Sugira funcionalidades, vote nas melhores ideias.</p>
   <div class="hero-cta">
     <a href="#enviar">Enviar sua ideia ↓</a>
   </div>
@@ -536,7 +536,7 @@
   <!-- FORM -->
   <section class="form-section" id="enviar">
     <h2 class="section-title">Envie sua ideia</h2>
-    <p class="section-sub">O que você precisa no dia a dia de marketing da escola?</p>
+    <p class="section-sub">Que funcionalidade você gostaria de ver no sistema?</p>
 
     <div class="form-card">
       <form id="ideaForm">
@@ -566,12 +566,12 @@
             <label for="categoria">Categoria</label>
             <select id="categoria" required>
               <option value="">Selecione...</option>
+              <option value="CRM">CRM e Gestão de Leads</option>
               <option value="Campanhas">Campanhas e Anúncios</option>
-              <option value="Captação">Captação de Alunos</option>
-              <option value="Redes Sociais">Redes Sociais e Conteúdo</option>
-              <option value="Eventos">Eventos e Ações Presenciais</option>
-              <option value="Materiais">Materiais Gráficos e Vídeos</option>
-              <option value="Resultados">Resultados e Métricas</option>
+              <option value="Dashboard">Dashboard e Relatórios</option>
+              <option value="Integração">Integrações (WhatsApp, Sistema escolar...)</option>
+              <option value="IA">Inteligência Artificial</option>
+              <option value="Solicitações">Solicitações e Produção</option>
               <option value="Outro">Outra sugestão</option>
             </select>
           </div>
@@ -619,12 +619,12 @@
     <div class="filters">
       <span>Filtrar:</span>
       <button class="filter-btn active" data-filter="Todas">Todas</button>
+      <button class="filter-btn" data-filter="CRM">CRM</button>
       <button class="filter-btn" data-filter="Campanhas">Campanhas</button>
-      <button class="filter-btn" data-filter="Captação">Captação</button>
-      <button class="filter-btn" data-filter="Redes Sociais">Redes Sociais</button>
-      <button class="filter-btn" data-filter="Eventos">Eventos</button>
-      <button class="filter-btn" data-filter="Materiais">Materiais</button>
-      <button class="filter-btn" data-filter="Resultados">Resultados</button>
+      <button class="filter-btn" data-filter="Dashboard">Dashboard</button>
+      <button class="filter-btn" data-filter="Integração">Integração</button>
+      <button class="filter-btn" data-filter="IA">IA</button>
+      <button class="filter-btn" data-filter="Solicitações">Solicitações</button>
       <button class="filter-btn" data-filter="Outro">Outro</button>
     </div>
 
@@ -707,12 +707,12 @@ function saveLocal() {
 // ════════════════════════════════════════
 function getCatClass(cat) {
   const map = {
+    'CRM': 'cat-crm',
     'Campanhas': 'cat-campanhas',
-    'Captação': 'cat-captacao',
-    'Redes Sociais': 'cat-redes',
-    'Eventos': 'cat-eventos',
-    'Materiais': 'cat-materiais',
-    'Resultados': 'cat-resultados',
+    'Dashboard': 'cat-dashboard',
+    'Integração': 'cat-integracao',
+    'IA': 'cat-ia',
+    'Solicitações': 'cat-solicitacoes',
     'Outro': 'cat-outro'
   };
   return map[cat] || 'cat-outro';
